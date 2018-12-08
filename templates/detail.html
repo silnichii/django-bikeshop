@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<section id="detail">
+    <div class="container">
+        <div class="detail-photo-price">
+            <div class="detail-photo">
+                <span>view large photo</span>
+                <img src="{{bike.photo.url}}" alt="">
+            </div>
+            <div class="detail-price">{{bike.price}}&nbsp;&euro;</div>
+        </div>
+        <div class="detail-descr">
+            <h1 class="descr-title">{{bike.title}}</h1>
+            <p class="descr-def"><span>Brand:&nbsp;</span>{{bike.brand}}</p>
+            <p class="descr-def"><span>Type:&nbsp;</span>{{bike.type_name}}</p>
+            <p class="descr-par">{{bike.description}}</p>
+        </div>
+    </div>
+
+    <div class="detail-large-img">
+        <img src="{{bike.photo.url}}" alt="">
+        <span>close</span>
+    </div>
+</section>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="search">
+
+    <div class="search-content">
+        <h1>Find your perfect bike!</h1>
+        <div class="search-block">
+            <form>
+                <label class="form-label" for="brand">Brand</label>
+                <select name="brand" class="form-control">
+                    <option selected="true" value="">All brands</option>
+                    {% for brand in brands %}
+                        <option value="{{brand}}"
+                            {% if brand == values.brand %}
+                                selected
+                            {% endif %}
+                        >{{brand}}</option>
+                    {% endfor %}
+                </select>
+
+                <label class="form-label" for="type_name">Type</label>
+                <select name="type_name" class="form-control">
+                    <option selected="true" value="">All types</option>
+                    {% for type_name in types %}
+                        <option value="{{type_name.name}}"
+                            {% if type_name.name == values.type_name %}
+                                selected
+                            {% endif %}
+                        >{{type_name.name}}</option>
+                    {% endfor %}
+                </select>
+
+                <label class="form-label" for="price">Price</label>
+                <select name="price" class="form-control">
+                    <option selected="true" value="">Any price, &#128;</option>
+                    <option value="500"
+                        {% if "500" == values.price %}
+                            selected
+                        {% endif %}
+
+                    >&#60; 500 &#128;</option>
+                    <option value="1000"
+                        {% if "1000" == values.price %}
+                            selected
+                        {% endif %}
+
+                    >&#60; 1000 &#128;</option>
+                    <option value="1500"
+                        {% if "1500" == values.price %}
+                            selected
+                        {% endif %}
+
+                    >&#60; 1500 &#128;</option>
+                    <option value="2500"
+                        {% if "2500" == values.price %}
+                            selected
+                        {% endif %}
+
+                    >&#60; 2500 &#128;</option>
+                    <option value="2501"
+                        {% if "2501" == values.price %}
+                            selected
+                        {% endif %}
+
+                    >2500+ &#128;</option>
+                </select>
+
+                <button class="form-submit" type="submit">Find</button>
+            </form>
+
+            <form>
+                <button class="reset-btn" type="submit">Reset filter</button>
+            </form>
+        </div>
+    </div>
+
+    
+
+
+
+    <div class="search-bg">
+        <div class="search-bg-fog"></div>
+    </div>
+
+</section>
+
+<section id="items">
+    <div class="container">
+
+        {% if bikes %}
+            {% for bike in bikes %}
+                <div class="item_wrap">
+                    <div class="item">
+                        <div class="item-img">
+                            <img src="{{bike.photo.url}}" alt="">
+                        </div>
+                        <div class="item-content">
+                            <div class="item-price">{{bike.price}} &#128;</div>
+                            <div class="item-title">{{bike.title}}</div>
+                            <div class="item-separate"></div>
+                            <div class="item-char"><span>Brand:&nbsp;&nbsp;</span>{{bike.brand}}</div>
+                            <div class="item-char"><span>Type:&nbsp;&nbsp;</span>{{bike.type_name}}</div>
+                            <a class="item-more" href="/bikes/{{bike.id}}">more</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="no_result">
+                <h3>No bikes :(</h3>
+            </div>
+        {% endif %}
+        
+    </div>
+</section>
+
+
+    
+{% endblock %}
