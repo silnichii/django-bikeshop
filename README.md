@@ -16,5 +16,5 @@ python manage.py runserver
 ```
 ___
 
-## Demo
-<img src="./demo.gif" width=500px />
+## Preview
+<img src="./preview.gif" width=500px style="display:block; margin: 0 auto;" />
